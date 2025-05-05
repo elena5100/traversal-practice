@@ -28,7 +28,17 @@ public class TraversalPractice {
    * @param node The root of the tree to print
    */
   public static <T> void printNodesWithOneChild(Node<T> node) {
-    
+    if (node == null) return;
+
+    boolean oneChild = (node.left == null && node.right != null) || 
+                       (node.left != null && node.right == null);
+
+    if (oneChild) {
+      System.out.println(node.value);
+    }
+
+    printNodesWithOneChild(node.left);
+    printNodesWithOneChild(node.right);
   }
 
     /**
