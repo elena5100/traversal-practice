@@ -29,17 +29,15 @@ public class TraversalPractice {
    */
   public static <T> void printNodesWithOneChild(Node<T> node) {
     if (node == null) return;
-
-    boolean oneChild = (node.left == null && node.right != null) || 
-                       (node.left != null && node.right == null);
-
-    if (oneChild) {
-      System.out.println(node.value);
+        if ((node.left == null && node.right != null) || (node.left != null && node.right == null)) {
+            System.out.println(node.value);
+        }
+        printNodesWithOneChild(node.left);
+        printNodesWithOneChild(node.right);
     }
 
-    printNodesWithOneChild(node.left);
-    printNodesWithOneChild(node.right);
-  }
+   
+
 
     /**
    * Returns the sum of the values of all nodes in a tree.
@@ -88,14 +86,8 @@ public class TraversalPractice {
    * @return The number of levels in the tree
    */
   public static <T> int numLevels(Node<T> node) {
-    if (node == null) {
-      return 0;
-    }
-
-    if (node.left == null && node.right == null) {
-      return 1;
-    }
-
+    if (node == null) return 0;
+    if (node.left == null && node.right == null) return 1;
     return 1 + Math.max(numLevels(node.left), numLevels(node.right));
   }
 
